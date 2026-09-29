@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Princess Vhea S. Buerano | Virtual Assistant & Creative Specialist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    },
+                    colors: {
+                        skyBrand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                        },
+                        mintBrand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        .dark .glass-panel {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(2, 132, 199, 0.12), 0 8px 10px -6px rgba(16, 185, 129, 0.08);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #0284c7 0%, #0284c7 35%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 50%, #e0f2fe 100%);
+        }
+        .dark .gradient-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #064e3b 50%, #0c4a6e 100%);
+        }
+        .btn-gradient {
+            background: linear-gradient(135deg, #0284c7 0%, #10b981 100%);
+        }
+        .btn-gradient:hover {
+            background: linear-gradient(135deg, #0369a1 0%, #059669 100%);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .tab-slide {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            transform: translateY(10px);
+        }
+        .tab-slide.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="gradient-bg text-slate-800 dark:text-slate-100 min-h-screen font-sans transition-colors duration-300">
+
+    <header class="fixed top-0 left-0 right-0 z-50 px-4 py-3">
+        <div class="max-w-7xl mx-auto glass-panel rounded-full px-6 py-3 flex items-center justify-between shadow-lg">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full btn-gradient flex items-center justify-center text-white font-bold text-lg shadow-md group-hover:scale-105 transition-transform">
+                    PB
+                </div>
+                <div>
+                    <span class="font-bold text-slate-900 dark:text-white tracking-tight text-lg block leading-none">Princess Vhea</span>
+                    <span class="text-xs text-skyBrand-600 dark:text-mintBrand-300 font-semibold">Virtual Assistant</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Items -->
+            <nav class="hidden md:flex items-center gap-1 bg-slate-100/60 dark:bg-slate-800/60 p-1.5 rounded-full border border-slate-200/50 dark:border-slate-700/50">
+                <button onclick="switchTab('about')" id="nav-about" class="nav-btn px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300 bg-white dark:bg-slate-700 text-skyBrand-600 dark:text-mintBrand-300 shadow-sm">About</button>
+                <button onclick="switchTab('services')" id="nav-services" class="nav-btn px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300 text-slate-600 dark:text-slate-300 hover:text-skyBrand-600">Services</button>
+                <button onclick="switchTab('experience')" id="nav-experience" class="nav-btn px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300 text-slate-600 dark:text-slate-300 hover:text-skyBrand-600">Experience</button>
+                <button onclick="switchTab('skills')" id="nav-skills" class="nav-btn px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300 text-slate-600 dark:text-slate-300 hover:text-skyBrand-600">Skills</button>
+                <button onclick="switchTab('calculator')" id="nav-calculator" class="nav-btn px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300 text-slate-600 dark:text-slate-300 hover:text-skyBrand-600 flex items-center gap-1.5">
+                    <i data-lucide="calculator" class="w-4 h-4"></i> Rate Calculator
+                </button>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <button id="themeToggle" onclick="toggleTheme()" class="p-2.5 rounded-full bg-slate-200/70 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-700 transition">
+                    <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
+                    <i data-lucide="moon" class="w-4 h-4 block dark:hidden"></i>
+                </button>
+
+                <button onclick="openHireModal()" class="hidden sm:flex items-center gap-2 btn-gradient text-white px-5 py-2.5 rounded-full font-semibold text-sm shadow-md hover:shadow-mintBrand-500/25 transition-all transform hover:-translate-y-0.5">
+                    <span>Hire Me</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Strip -->
+        <div class="md:hidden mt-2 max-w-md mx-auto glass-panel rounded-2xl p-1.5 flex justify-between overflow-x-auto no-scrollbar shadow-lg">
+            <button onclick="switchTab('about')" id="mnav-about" class="mnav-btn px-3 py-1.5 text-xs font-semibold rounded-xl bg-skyBrand-500 text-white shadow-sm">About</button>
+            <button onclick="switchTab('services')" id="mnav-services" class="mnav-btn px-3 py-1.5 text-xs font-semibold rounded-xl text-slate-600 dark:text-slate-300">Services</button>
+            <button onclick="switchTab('experience')" id="mnav-experience" class="mnav-btn px-3 py-1.5 text-xs font-semibold rounded-xl text-slate-600 dark:text-slate-300">Experience</button>
+            <button onclick="switchTab('skills')" id="mnav-skills" class="mnav-btn px-3 py-1.5 text-xs font-semibold rounded-xl text-slate-600 dark:text-slate-300">Skills</button>
+            <button onclick="switchTab('calculator')" id="mnav-calculator" class="mnav-btn px-3 py-1.5 text-xs font-semibold rounded-xl text-slate-600 dark:text-slate-300">Quote</button>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 pt-32 pb-20">
+
+        <!-- SLIDE 1: ABOUT / HERO -->
+        <section id="slide-about" class="tab-slide active">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7 glass-panel rounded-3xl p-8 lg:p-12 shadow-xl relative overflow-hidden">
+                    <div class="absolute -top-24 -right-24 w-72 h-72 bg-mintBrand-300/30 dark:bg-mintBrand-900/30 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-skyBrand-300/30 dark:bg-skyBrand-900/30 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-mintBrand-100 dark:bg-mintBrand-950/60 text-mintBrand-700 dark:text-mintBrand-300 text-xs font-bold uppercase tracking-wider mb-6 border border-mintBrand-200 dark:border-mintBrand-800">
+                        <span class="w-2 h-2 rounded-full bg-mintBrand-500 animate-pulse"></span> Available for Remote Hiring
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-slate-900 dark:text-white mb-4">
+                        Hi, I'm <span class="gradient-text font-serif italic">Princess Vhea</span>
+                    </h1>
+
+                    <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-300 font-medium mb-6 leading-relaxed">
+                        Detail-oriented <strong class="text-slate-800 dark:text-slate-100">Virtual Assistant</strong> with over 5+ years of experience streamlining administrative operations, academic research, document editing, and creative Canva visual designs.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4 mb-8">
+                        <div class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300 bg-white/60 dark:bg-slate-800/60 px-3.5 py-2 rounded-xl border border-slate-200/60 dark:border-slate-700/60">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-skyBrand-500"></i>
+                            <span>Brgy. Miswa Infanta, Quezon, PH</span>
+                        </div>
+                        <a href="mailto:vheabuerano18@gmail.com" class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300 bg-white/60 dark:bg-slate-800/60 px-3.5 py-2 rounded-xl border border-slate-200/60 dark:border-slate-700/60 hover:text-skyBrand-600 transition">
+                            <i data-lucide="mail" class="w-4 h-4 text-mintBrand-500"></i>
+                            <span>vheabuerano18@gmail.com</span>
+                        </a>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-4">
+                        <button onclick="openHireModal()" class="btn-gradient text-white px-7 py-3.5 rounded-2xl font-bold shadow-lg shadow-skyBrand-500/20 transition-all transform hover:scale-[1.02] flex items-center gap-2">
+                            <i data-lucide="sparkles" class="w-5 h-5"></i>
+                            <span>Hire Princess Now</span>
+                        </button>
+                        <button onclick="switchTab('services')" class="bg-white/80 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 px-6 py-3.5 rounded-2xl font-semibold transition flex items-center gap-2 border border-slate-200 dark:border-slate-700">
+                            <span>Explore Services</span>
+                            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="glass-card p-6 rounded-3xl text-center border border-white/60 dark:border-slate-800">
+                            <div class="text-3xl sm:text-4xl font-extrabold text-skyBrand-500 mb-1">100+</div>
+                            <div class="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Clients Served</div>
+                        </div>
+                        <div class="glass-card p-6 rounded-3xl text-center border border-white/60 dark:border-slate-800">
+                            <div class="text-3xl sm:text-4xl font-extrabold text-mintBrand-500 mb-1">5+ Yrs</div>
+                            <div class="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Experience</div>
+                        </div>
+                        <div class="glass-card p-6 rounded-3xl text-center border border-white/60 dark:border-slate-800">
+                            <div class="text-3xl sm:text-4xl font-extrabold text-skyBrand-500 mb-1">360+</div>
+                            <div class="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Teaching/Intern Hours</div>
+                        </div>
+                        <div class="glass-card p-6 rounded-3xl text-center border border-white/60 dark:border-slate-800">
+                            <div class="text-3xl sm:text-4xl font-extrabold text-mintBrand-500 mb-1">100%</div>
+                            <div class="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">On-Time Delivery</div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-3xl space-y-3">
+                        <h3 class="font-bold text-lg text-slate-900 dark:text-white flex items-center gap-2">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-mintBrand-500"></i>
+                            Why Work With Princess?
+                        </h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Bachelor of Secondary Education major in English with a background as an Editor-in-Chief, Playwright, and Capstone Project awardee. Combines strong linguistic precision with Microsoft Office & Canva expertise to deliver organized administrative services.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: SERVICES SHOWCASE -->
+        <section id="slide-services" class="tab-slide">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-3">
+                    Virtual Assistant Services
+                </h2>
+                <p class="text-slate-600 dark:text-slate-300">
+                    Targeted administrative, editorial, graphic layout, and document management solutions.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Service 1 -->
+                <div class="glass-card rounded-3xl p-6 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-skyBrand-100 dark:bg-skyBrand-900/50 text-skyBrand-600 dark:text-skyBrand-300 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <i data-lucide="file-text" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Administrative Support</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                            Document organization, calendar management, email handling, transcribing, and daily operations.
+                        </p>
+                        <ul class="text-xs space-y-2 text-slate-500 dark:text-slate-400 mb-6">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-mintBrand-500"></i> Calendar & Email Management</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-mintBrand-500"></i> Document Formatting & PDF Tools</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-mintBrand-500"></i> Meeting Minutes & Transcripts</li>
+                        </ul>
+                    </div>
+                    <button onclick="openServiceDetail('admin')" class="w-full py-2.5 rounded-xl border border-skyBrand-300 dark:border-skyBrand-700 text-skyBrand-600 dark:text-skyBrand-300 text-xs font-bold hover:bg-skyBrand-500 hover:text-white transition">
+                        View Full Details
+                    </button>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="glass-card rounded-3xl p-6 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-mintBrand-100 dark:bg-mintBrand-900/50 text-mintBrand-600 dark:text-mintBrand-300 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <i data-lucide="palette" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Canva & Graphic Design</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                            Graphics, presentation slides, logos, infographics, and social media layout designs created in Canva.
+                        </p>
+                        <ul class="text-xs space-y-2 text-slate-500 dark:text-slate-400 mb-6">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-skyBrand-500"></i> Pitch & Presentation Decks</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-skyBrand-500"></i> Social Media Visual Layouts</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-skyBrand-500"></i> Logos, Banners & Infographics</li>
+                        </ul>
+                    </div>
+                    <button onclick="openServiceDetail('design')" class="w-full py-2.5 rounded-xl border border-mintBrand-300 dark:border-mintBrand-700 text-mintBrand-600 dark:text-mintBrand-300 text-xs font-bold hover:bg-mintBrand-500 hover:text-white transition">
+                        View Full Details
+                    </button>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="glass-card rounded-3xl p-6 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-skyBrand-100 dark:bg-skyBrand-900/50 text-skyBrand-600 dark:text-skyBrand-300 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <i data-lucide="pen-tool" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Writing & Research</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                            Technical, creative, and professional writing services including essays, scripts, blogs, and research.
+                        </p>
+                        <ul class="text-xs space-y-2 text-slate-500 dark:text-slate-400 mb-6">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-mintBrand-500"></i> Technical & Academic Writing</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-mintBrand-500"></i> Creative Scripts & Prose</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-mintBrand-500"></i> Articles & Content Editing</li>
+                        </ul>
+                    </div>
+                    <button onclick="openServiceDetail('writing')" class="w-full py-2.5 rounded-xl border border-skyBrand-300 dark:border-skyBrand-700 text-skyBrand-600 dark:text-skyBrand-300 text-xs font-bold hover:bg-skyBrand-500 hover:text-white transition">
+                        View Full Details
+                    </button>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="glass-card rounded-3xl p-6 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-mintBrand-100 dark:bg-mintBrand-900/50 text-mintBrand-600 dark:text-mintBrand-300 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <i data-lucide="database" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Data & File Management</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                            Organized Excel data entry, report card management, research consolidation, and PDF conversion.
+                        </p>
+                        <ul class="text-xs space-y-2 text-slate-500 dark:text-slate-400 mb-6">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-skyBrand-500"></i> Advanced Excel & Office Tools</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-skyBrand-500"></i> Research & Data Gathering</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-skyBrand-500"></i> Adobe Acrobat PDF Editing</li>
+                        </ul>
+                    </div>
+                    <button onclick="openServiceDetail('data')" class="w-full py-2.5 rounded-xl border border-mintBrand-300 dark:border-mintBrand-700 text-mintBrand-600 dark:text-mintBrand-300 text-xs font-bold hover:bg-mintBrand-500 hover:text-white transition">
+                        View Full Details
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: EXPERIENCE & EDUCATION TIMELINE -->
+        <section id="slide-experience" class="tab-slide">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Left: Work Experience -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="p-3 bg-skyBrand-100 dark:bg-skyBrand-900/50 rounded-2xl text-skyBrand-600 dark:text-skyBrand-300">
+                            <i data-lucide="briefcase" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">Work Experience</h2>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Key achievements and administrative roles</p>
+                        </div>
+                    </div>
+
+                    <!-- Experience Item 1 -->
+                    <div class="glass-panel p-6 rounded-3xl border-l-4 border-l-skyBrand-500 hover:shadow-lg transition">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Academic Assistance & VA Specialist</h3>
+                            <span class="text-xs font-bold px-3 py-1 bg-skyBrand-100 dark:bg-skyBrand-900/60 text-skyBrand-700 dark:text-skyBrand-300 rounded-full">June 18, 2021 – Present</span>
+                        </div>
+                        <p class="text-xs font-semibold text-mintBrand-600 dark:text-mintBrand-400 mb-3">Independent Freelance Client Services</p>
+                        <ul class="text-sm text-slate-600 dark:text-slate-300 space-y-2 list-disc list-inside">
+                            <li>Managed academic & administrative documents for <strong class="text-slate-900 dark:text-white">over 100+ clients</strong>, consistently meeting deadlines.</li>
+                            <li>Created custom essays, research papers, scripts, stories, poetry, and Canva designs based on client needs.</li>
+                            <li>Simultaneously managed multiple client paperwork or projects with organized, timely output.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Experience Item 2 -->
+                    <div class="glass-panel p-6 rounded-3xl border-l-4 border-l-mintBrand-500 hover:shadow-lg transition">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Teaching Internship</h3>
+                            <span class="text-xs font-bold px-3 py-1 bg-mintBrand-100 dark:bg-mintBrand-900/60 text-mintBrand-700 dark:text-mintBrand-300 rounded-full">Dec 3, 2025 – Mar 27, 2026</span>
+                        </div>
+                        <p class="text-xs font-semibold text-skyBrand-600 dark:text-skyBrand-400 mb-3">High School Secondary Education</p>
+                        <ul class="text-sm text-slate-600 dark:text-slate-300 space-y-2 list-disc list-inside">
+                            <li>Taught high school students in three different year levels for <strong class="text-slate-900 dark:text-white">360 hours</strong>, adapting to diverse student needs.</li>
+                            <li>Designed creative instructional materials and activities to increase student engagement.</li>
+                            <li>Managed quizzes, exams, grades, and report cards using Excel and Microsoft Office tools.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Experience Item 3 -->
+                    <div class="glass-panel p-6 rounded-3xl border-l-4 border-l-skyBrand-500 hover:shadow-lg transition">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Field Study 1 and 2</h3>
+                            <span class="text-xs font-bold px-3 py-1 bg-skyBrand-100 dark:bg-skyBrand-900/60 text-skyBrand-700 dark:text-skyBrand-300 rounded-full">Sept 12, 2025 – Dec 1, 2025</span>
+                        </div>
+                        <p class="text-xs font-semibold text-mintBrand-600 dark:text-mintBrand-400 mb-3">Classroom Support & Operations</p>
+                        <ul class="text-sm text-slate-600 dark:text-slate-300 space-y-2 list-disc list-inside">
+                            <li>Collaborated with professional teachers to adapt to larger classroom environments.</li>
+                            <li>Assisted resource teachers with classroom and administrative tasks for daily operations.</li>
+                            <li>Facilitated student activities independently, strengthening classroom management and communication skills.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Right: Education -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="p-3 bg-mintBrand-100 dark:bg-mintBrand-900/50 rounded-2xl text-mintBrand-600 dark:text-mintBrand-300">
+                            <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">Education</h2>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Academic background and leadership</p>
+                        </div>
+                    </div>
+
+                    <!-- Edu 1 -->
+                    <div class="glass-card p-6 rounded-3xl relative">
+                        <div class="text-xs font-bold text-skyBrand-600 dark:text-skyBrand-400 mb-1">2022 – 2026</div>
+                        <h3 class="font-bold text-lg text-slate-900 dark:text-white">Northern Quezon College, Inc.</h3>
+                        <p class="text-sm font-medium text-slate-600 dark:text-slate-300 mb-3">Bachelor of Secondary Education Major in English</p>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="px-2.5 py-1 rounded-lg bg-skyBrand-50 dark:bg-skyBrand-950/60 font-semibold text-skyBrand-700 dark:text-skyBrand-300 border border-skyBrand-200 dark:border-skyBrand-800">Playwright</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-mintBrand-50 dark:bg-mintBrand-950/60 font-semibold text-mintBrand-700 dark:text-mintBrand-300 border border-mintBrand-200 dark:border-mintBrand-800">Editor-in-chief</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-slate-200/70 dark:bg-slate-700 font-semibold text-slate-700 dark:text-slate-200">Research</span>
+                        </div>
+                    </div>
+
+                    <!-- Edu 2 -->
+                    <div class="glass-card p-6 rounded-3xl relative">
+                        <div class="text-xs font-bold text-mintBrand-600 dark:text-mintBrand-400 mb-1">2020 – 2022</div>
+                        <h3 class="font-bold text-lg text-slate-900 dark:text-white">ACTS Computer College of Infanta</h3>
+                        <p class="text-sm font-medium text-slate-600 dark:text-slate-300 mb-2">Senior High School – Humanities and Social Sciences</p>
+                        <div class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 dark:bg-emerald-950/50 px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                            <i data-lucide="award" class="w-3.5 h-3.5"></i> With High Honors & Best in Capstone Project
+                        </div>
+                    </div>
+
+                    <!-- Edu 3 -->
+                    <div class="glass-card p-6 rounded-3xl relative">
+                        <div class="text-xs font-bold text-slate-500 mb-1">2016 – 2020</div>
+                        <h3 class="font-bold text-lg text-slate-900 dark:text-white">Infanta National High School</h3>
+                        <p class="text-sm font-medium text-slate-600 dark:text-slate-300 mb-2">Junior High School</p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Consistent Honor Student & Participated in English Clubs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: SKILLS & TRAINING MATRIX -->
+        <section id="slide-skills" class="tab-slide">
+            <div class="text-center max-w-3xl mx-auto mb-8">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-3">
+                    Skills & Training
+                </h2>
+                <p class="text-slate-600 dark:text-slate-300">
+                    Interactive filter showcasing hard technical tools, writing proficiency, and soft skills.
+                </p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-2 mb-8">
+                <button onclick="filterSkills('all')" class="skill-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-skyBrand-500 text-white shadow-md">All Skills</button>
+                <button onclick="filterSkills('soft')" class="skill-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-skyBrand-100">Soft Skills</button>
+                <button onclick="filterSkills('office')" class="skill-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-skyBrand-100">MS Office Suite</button>
+                <button onclick="filterSkills('canva')" class="skill-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-skyBrand-100">Canva Proficiency</button>
+                <button onclick="filterSkills('writing')" class="skill-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-skyBrand-100">Writing & Research</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="skillsGrid">
+                <!-- Skill: MS Office -->
+                <div class="skill-card glass-card p-6 rounded-3xl" data-category="office">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="p-3 bg-skyBrand-100 text-skyBrand-600 rounded-2xl"><i data-lucide="file-spreadsheet" class="w-6 h-6"></i></div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white">Microsoft Office Suite</h3>
+                            <span class="text-xs text-slate-500">PowerPoint, Excel, Word, OneNote, Outlook</span>
+                        </div>
+                    </div>
+                    <div class="w-full bg-slate-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden mb-2">
+                        <div class="bg-skyBrand-500 h-full w-[95%]"></div>
+                    </div>
+                    <div class="flex justify-between text-xs text-slate-500">
+                        <span>Proficiency</span>
+                        <span class="font-bold">95%</span>
+                    </div>
+                </div>
+
+                <!-- Skill: Canva -->
+                <div class="skill-card glass-card p-6 rounded-3xl" data-category="canva">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="p-3 bg-mintBrand-100 text-mintBrand-600 rounded-2xl"><i data-lucide="layout" class="w-6 h-6"></i></div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white">Canva Visual Layouts</h3>
+                            <span class="text-xs text-slate-500">Graphics, Infographics, Logo, Presentations</span>
+                        </div>
+                    </div>
+                    <div class="w-full bg-slate-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden mb-2">
+                        <div class="bg-mintBrand-500 h-full w-[92%]"></div>
+                    </div>
+                    <div class="flex justify-between text-xs text-slate-500">
+                        <span>Proficiency</span>
+                        <span class="font-bold">92%</span>
+                    </div>
+                </div>
+
+                <!-- Skill: Adobe Acrobat -->
+                <div class="skill-card glass-card p-6 rounded-3xl" data-category="office">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="p-3 bg-skyBrand-100 text-skyBrand-600 rounded-2xl"><i data-lucide="file-type-2" class="w-6 h-6"></i></div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white">Adobe Acrobat PDF</h3>
+                            <span class="text-xs text-slate-500">Creation, Conversion, Editing, Organization</span>
+                        </div>
+                    </div>
+                    <div class="w-full bg-slate-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden mb-2">
+                        <div class="bg-skyBrand-500 h-full w-[90%]"></div>
+                    </div>
+                    <div class="flex justify-between text-xs text-slate-500">
+                        <span>Proficiency</span>
+                        <span class="font-bold">90%</span>
+                    </div>
+                </div>
+
+                <!-- Skill: Writing -->
+                <div class="skill-card glass-card p-6 rounded-3xl" data-category="writing">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="p-3 bg-mintBrand-100 text-mintBrand-600 rounded-2xl"><i data-lucide="pen-tool" class="w-6 h-6"></i></div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white">Technical & Creative Writing</h3>
+                            <span class="text-xs text-slate-500">Prose, Poetry, Scripts, Blogs, Articles</span>
+                        </div>
+                    </div>
+                    <div class="w-full bg-slate-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden mb-2">
+                        <div class="bg-mintBrand-500 h-full w-[96%]"></div>
+                    </div>
+                    <div class="flex justify-between text-xs text-slate-500">
+                        <span>Proficiency</span>
+                        <span class="font-bold">96%</span>
+                    </div>
+                </div>
+
+                <!-- Skill: Soft Skills -->
+                <div class="skill-card glass-card p-6 rounded-3xl" data-category="soft">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="p-3 bg-skyBrand-100 text-skyBrand-600 rounded-2xl"><i data-lucide="users" class="w-6 h-6"></i></div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white">Soft Skills & Productivity</h3>
+                            <span class="text-xs text-slate-500">Communication, Collaboration, Ethics</span>
+                        </div>
+                    </div>
+                    <div class="w-full bg-slate-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden mb-2">
+                        <div class="bg-skyBrand-500 h-full w-[98%]"></div>
+                    </div>
+                    <div class="flex justify-between text-xs text-slate-500">
+                        <span>Proficiency</span>
+                        <span class="font-bold">98%</span>
+                    </div>
+                </div>
+
+                <!-- Skill: Problem Solving -->
+                <div class="skill-card glass-card p-6 rounded-3xl" data-category="soft">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="p-3 bg-mintBrand-100 text-mintBrand-600 rounded-2xl"><i data-lucide="lightbulb" class="w-6 h-6"></i></div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white">Problem-Solving & Research</h3>
+                            <span class="text-xs text-slate-500">Research, Innovation, Conflict Resolution</span>
+                        </div>
+                    </div>
+                    <div class="w-full bg-slate-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden mb-2">
+                        <div class="bg-mintBrand-500 h-full w-[94%]"></div>
+                    </div>
+                    <div class="flex justify-between text-xs text-slate-500">
+                        <span>Proficiency</span>
+                        <span class="font-bold">94%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Training & Seminars -->
+            <div class="mt-12 glass-panel p-8 rounded-3xl">
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                    <i data-lucide="award" class="w-5 h-5 text-mintBrand-500"></i>
+                    Training & Seminars Completed
+                </h3>
+                <div class="flex flex-wrap gap-3">
+                    <span class="px-4 py-2 rounded-xl bg-white/80 dark:bg-slate-800 border border-skyBrand-200 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300">Data Entry</span>
+                    <span class="px-4 py-2 rounded-xl bg-white/80 dark:bg-slate-800 border border-mintBrand-200 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300">Copywriting</span>
+                    <span class="px-4 py-2 rounded-xl bg-white/80 dark:bg-slate-800 border border-skyBrand-200 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300">Graphic Designs & Infographics</span>
+                    <span class="px-4 py-2 rounded-xl bg-white/80 dark:bg-slate-800 border border-mintBrand-200 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300">Calendar Management</span>
+                    <span class="px-4 py-2 rounded-xl bg-white/80 dark:bg-slate-800 border border-skyBrand-200 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300">Email & File Management</span>
+                    <span class="px-4 py-2 rounded-xl bg-white/80 dark:bg-slate-800 border border-mintBrand-200 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300">Technical Writing & Scripts</span>
+                    <span class="px-4 py-2 rounded-xl bg-white/80 dark:bg-slate-800 border border-skyBrand-200 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300">Basic Video Editing</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 5: SERVICE RATE CALCULATOR -->
+        <section id="slide-calculator" class="tab-slide">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-2">
+                        Interactive Quote Calculator
+                    </h2>
+                    <p class="text-slate-600 dark:text-slate-300">
+                        Tailor your virtual assistant estimate by choosing required services and weekly hours.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-6 sm:p-10 rounded-3xl grid grid-cols-1 lg:grid-cols-12 gap-8 shadow-xl">
+                    <div class="lg:col-span-7 space-y-6">
+                        <h3 class="font-bold text-lg text-slate-900 dark:text-white border-b pb-2 border-slate-200 dark:border-slate-700">1. Select Required Services</h3>
+                        
+                        <div class="space-y-3">
+                            <label class="flex items-center justify-between p-4 rounded-2xl bg-white/60 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-skyBrand-500 transition">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" id="calc-admin" onchange="calculateRate()" class="w-5 h-5 accent-skyBrand-500 rounded">
+                                    <div>
+                                        <div class="font-bold text-sm text-slate-900 dark:text-white">Admin & Email Support</div>
+                                        <div class="text-xs text-slate-500">$12 / hr baseline</div>
+                                    </div>
+                                </div>
+                                <i data-lucide="mail" class="w-5 h-5 text-skyBrand-500"></i>
+                            </label>
+
+                            <label class="flex items-center justify-between p-4 rounded-2xl bg-white/60 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-mintBrand-500 transition">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" id="calc-canva" onchange="calculateRate()" class="w-5 h-5 accent-mintBrand-500 rounded">
+                                    <div>
+                                        <div class="font-bold text-sm text-slate-900 dark:text-white">Canva Graphics & Layouts</div>
+                                        <div class="text-xs text-slate-500">$15 / hr baseline</div>
+                                    </div>
+                                </div>
+                                <i data-lucide="image" class="w-5 h-5 text-mintBrand-500"></i>
+                            </label>
+
+                            <label class="flex items-center justify-between p-4 rounded-2xl bg-white/60 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 cursor-pointer hover:border-skyBrand-500 transition">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" id="calc-writing" onchange="calculateRate()" class="w-5 h-5 accent-skyBrand-500 rounded">
+                                    <div>
+                                        <div class="font-bold text-sm text-slate-900 dark:text-white">Writing, Scripts & Research</div>
+                                        <div class="text-xs text-slate-500">$18 / hr baseline</div>
+                                    </div>
+                                </div>
+                                <i data-lucide="pen-tool" class="w-5 h-5 text-skyBrand-500"></i>
+                            </label>
+                        </div>
+
+                        <h3 class="font-bold text-lg text-slate-900 dark:text-white border-b pb-2 border-slate-200 dark:border-slate-700 pt-2">2. Estimated Weekly Hours</h3>
+                        
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Hours per week:</span>
+                                <span id="hours-val" class="text-lg font-bold text-skyBrand-600 dark:text-mintBrand-400">10 hrs/wk</span>
+                            </div>
+                            <input type="range" id="hours-range" min="5" max="40" step="5" value="10" oninput="calculateRate()" class="w-full accent-mintBrand-500 cursor-pointer h-2 bg-slate-200 dark:bg-slate-700 rounded-lg">
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 btn-gradient p-6 sm:p-8 rounded-3xl text-white flex flex-col justify-between shadow-xl">
+                        <div>
+                            <span class="text-xs uppercase font-bold tracking-widest text-skyBrand-100">Estimated Quote</span>
+                            <div class="text-4xl font-extrabold mt-2 mb-1" id="total-price">$120</div>
+                            <span class="text-xs text-mintBrand-100">per week (approx.)</span>
+
+                            <div class="my-6 border-t border-white/20 pt-4 space-y-2 text-xs">
+                                <div class="flex justify-between">
+                                    <span class="opacity-90">Turnaround Guarantee:</span>
+                                    <span class="font-bold">Fast & On-Time</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="opacity-90">Revisions:</span>
+                                    <span class="font-bold">Unlimited</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="opacity-90">Communication:</span>
+                                    <span class="font-bold">Daily Updates</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button onclick="openHireModalWithQuote()" class="w-full bg-white text-slate-900 font-bold py-3 px-4 rounded-xl shadow-lg hover:bg-slate-100 transition transform hover:scale-105 flex items-center justify-center gap-2">
+                            <span>Lock In Quote</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-skyBrand-600"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- SERVICE DETAILS MODAL -->
+    <div id="serviceModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="glass-panel bg-white dark:bg-slate-900 max-w-lg w-full rounded-3xl p-6 sm:p-8 relative shadow-2xl border border-white/40">
+            <button onclick="closeModal('serviceModal')" class="absolute top-5 right-5 p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-900">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <div id="modalContent" class="space-y-4">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- HIRE ME / CONTACT MODAL -->
+    <div id="hireModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="glass-panel bg-white dark:bg-slate-900 max-w-xl w-full rounded-3xl p-6 sm:p-8 relative shadow-2xl border border-white/40">
+            <button onclick="closeModal('hireModal')" class="absolute top-5 right-5 p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-900">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <div class="mb-6">
+                <h3 class="text-2xl font-extrabold text-slate-900 dark:text-white">Let's Work Together!</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Directly contact or submit a proposal request for Princess Vhea S. Buerano.</p>
+            </div>
+
+            <div class="flex items-center justify-between p-3 rounded-2xl bg-skyBrand-50 dark:bg-slate-800 border border-skyBrand-200 dark:border-slate-700 mb-6">
+                <div class="flex items-center gap-3">
+                    <i data-lucide="mail" class="w-5 h-5 text-skyBrand-500"></i>
+                    <span id="contactEmail" class="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">vheabuerano18@gmail.com</span>
+                </div>
+                <button onclick="copyEmail()" class="px-3 py-1.5 rounded-xl bg-mintBrand-500 text-white text-xs font-bold hover:bg-mintBrand-600 transition flex items-center gap-1">
+                    <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                    <span id="copyText">Copy Email</span>
+                </button>
+            </div>
+
+            <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Your Name / Company</label>
+                    <input type="text" required placeholder="e.g. Jane Doe" class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:border-skyBrand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Your Email</label>
+                    <input type="email" required placeholder="jane@example.com" class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:border-skyBrand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Project Details / Message</label>
+                    <textarea id="hireMessage" rows="3" required placeholder="Describe what VA tasks or assistance you require..." class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:border-skyBrand-500"></textarea>
+                </div>
+                <button type="submit" class="w-full py-3 btn-gradient text-white font-bold rounded-xl shadow-lg hover:opacity-95 transition">
+                    Send Proposal Request
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        function switchTab(tabId) {
+            const tabs = document.querySelectorAll('.tab-slide');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            const activeTab = document.getElementById(`slide-${tabId}`);
+            if(activeTab) {
+                activeTab.classList.add('active');
+            }
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-white', 'dark:bg-slate-700', 'text-skyBrand-600', 'dark:text-mintBrand-300', 'shadow-sm');
+                btn.classList.add('text-slate-600', 'dark:text-slate-300');
+            });
+            const activeNav = document.getElementById(`nav-${tabId}`);
+            if(activeNav) {
+                activeNav.classList.add('bg-white', 'dark:bg-slate-700', 'text-skyBrand-600', 'dark:text-mintBrand-300', 'shadow-sm');
+                activeNav.classList.remove('text-slate-600', 'dark:text-slate-300');
+            }
+
+            document.querySelectorAll('.mnav-btn').forEach(btn => {
+                btn.classList.remove('bg-skyBrand-500', 'text-white', 'shadow-sm');
+                btn.classList.add('text-slate-600', 'dark:text-slate-300');
+            });
+            const activeMobileNav = document.getElementById(`mnav-${tabId}`);
+            if(activeMobileNav) {
+                activeMobileNav.classList.add('bg-skyBrand-500', 'text-white', 'shadow-sm');
+                activeMobileNav.classList.remove('text-slate-600', 'dark:text-slate-300');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+        }
+
+        function filterSkills(category) {
+            const cards = document.querySelectorAll('.skill-card');
+            cards.forEach(card => {
+                if(category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            document.querySelectorAll('.skill-filter-btn').forEach(btn => {
+                btn.classList.remove('bg-skyBrand-500', 'text-white');
+                btn.classList.add('bg-white', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
+            });
+            event.target.classList.add('bg-skyBrand-500', 'text-white');
+            event.target.classList.remove('bg-white', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
+        }
+
+        function calculateRate() {
+            const adminChecked = document.getElementById('calc-admin').checked;
+            const canvaChecked = document.getElementById('calc-canva').checked;
+            const writingChecked = document.getElementById('calc-writing').checked;
+            const hours = parseInt(document.getElementById('hours-range').value);
+
+            document.getElementById('hours-val').innerText = `${hours} hrs/wk`;
+
+            let rate = 12;
+            if (adminChecked && canvaChecked && writingChecked) rate = 16;
+            else if (writingChecked) rate = 18;
+            else if (canvaChecked) rate = 15;
+            else if (adminChecked) rate = 12;
+
+            const total = rate * hours;
+            document.getElementById('total-price').innerText = `$${total}`;
+        }
+
+        const serviceData = {
+            admin: {
+                title: "Administrative Support",
+                icon: "file-text",
+                desc: "Streamlined administrative management ensuring efficient handling of documents, schedules, and daily office tasks.",
+                items: [
+                    "Calendar and Email Inbox Management",
+                    "Microsoft Office Document Formatting (Word, Excel, PPT)",
+                    "Meeting Minutes & Transcripts Preparation",
+                    "Academic & Administrative Paperwork Organization",
+                    "Data Entry & File Organization"
+                ]
+            },
+            design: {
+                title: "Canva & Visual Graphic Design",
+                icon: "palette",
+                desc: "Visually captivating visual graphics created in Canva to enhance social media engagement and presentation materials.",
+                items: [
+                    "Pitch Decks & Presentation Slide Design",
+                    "Social Media Layouts & Graphics",
+                    "Logos, Infographics, and Banners",
+                    "Creative Instructional Materials & Worksheets",
+                    "PDF Document Formatting & Visual Styling"
+                ]
+            },
+            writing: {
+                title: "Writing & Content Creation",
+                icon: "pen-tool",
+                desc: "High-quality writing grounded in BSEd English expertise across technical, creative, scriptwriting, and research domains.",
+                items: [
+                    "Technical & Academic Writing Papers",
+                    "Creative Scripts, Plays, Prose & Poetry",
+                    "Blog Posts, Articles, and Web Copywriting",
+                    "Proofreading & Grammar Review",
+                    "Research Consolidation and Summaries"
+                ]
+            },
+            data: {
+                title: "Data & File Management",
+                icon: "database",
+                desc: "Systematic data management to organize student grades, research reports, and business records effortlessly.",
+                items: [
+                    "Excel Data Management & Spreadsheet Formulas",
+                    "Report Cards & Assessment Calculations",
+                    "Adobe Acrobat PDF Conversions & Edits",
+                    "Information & Media Literacy Research",
+                    "Basic Troubleshooting & File Archiving"
+                ]
+            }
+        };
+
+        function openServiceDetail(type) {
+            const info = serviceData[type];
+            if(!info) return;
+
+            const content = `
+                <div class="w-12 h-12 rounded-2xl bg-skyBrand-100 dark:bg-skyBrand-900/50 text-skyBrand-600 dark:text-skyBrand-300 flex items-center justify-center mb-4">
+                    <i data-lucide="${info.icon}" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white">${info.title}</h3>
+                <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">${info.desc}</p>
+                <div class="border-t border-slate-200 dark:border-slate-800 pt-3">
+                    <h4 class="text-xs font-bold text-slate-800 dark:text-slate-200 mb-2">Key Deliverables:</h4>
+                    <ul class="text-xs text-slate-600 dark:text-slate-400 space-y-1.5">
+                        ${info.items.map(item => `<li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-mintBrand-500"></i> ${item}</li>`).join('')}
+                    </ul>
+                </div>
+                <button onclick="closeModal('serviceModal'); openHireModal();" class="w-full mt-4 py-2.5 btn-gradient text-white font-bold rounded-xl text-xs transition">
+                    Request This Service
+                </button>
+            `;
+
+            document.getElementById('modalContent').innerHTML = content;
+            lucide.createIcons();
+            document.getElementById('serviceModal').classList.remove('hidden');
+            document.getElementById('serviceModal').classList.add('flex');
+        }
+
+        function openHireModal() {
+            document.getElementById('hireModal').classList.remove('hidden');
+            document.getElementById('hireModal').classList.add('flex');
+        }
+
+        function openHireModalWithQuote() {
+            const totalPrice = document.getElementById('total-price').innerText;
+            const hours = document.getElementById('hours-val').innerText;
+            document.getElementById('hireMessage').value = `Hi Princess, I would like to lock in a quote of ${totalPrice} for approx ${hours} of VA services per week.`;
+            openHireModal();
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+            document.getElementById(id).classList.remove('flex');
+        }
+
+        function copyEmail() {
+            const emailText = "vheabuerano18@gmail.com";
+            const textarea = document.createElement('textarea');
+            textarea.value = emailText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            const copyBtnText = document.getElementById('copyText');
+            copyBtnText.innerText = "Copied!";
+            setTimeout(() => {
+                copyBtnText.innerText = "Copy Email";
+            }, 2000);
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            alert("Thank you! Your hiring proposal request has been received. Princess Vhea will respond shortly.");
+            closeModal('hireModal');
+        }
+    </script>
+</body>
+</html>
